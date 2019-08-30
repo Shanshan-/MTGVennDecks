@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">MTGVennDecks</string>
+    <string name="action_settings">Settings</string>
+    <string name="deck1_hint">Input deck 1 cards</string>
+    <string name="deck2_hint">Input deck 2 cards</string>
+    <string name="deck1">Deck 1</string>
+    <string name="deck2">Deck 2</string>
+    <string name="common">Common Cards</string>
+    <string name="more_data">Enter Deck Lists Above</string>
+    <string name="no_data">No cards in this list</string>
+    <string name="cb_paste">Overwrite from clipboard</string>
+    <string name="cb_copy">Copy to clipboard</string>
+    <string name="title_activity_results">Results</string>
+</resources>

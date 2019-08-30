@@ -1,0 +1,6 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="header_size">22sp</dimen>
+    <dimen name="cb_button_size">8sp</dimen>
+    <dimen name="input_tv_height">235dp</dimen>
+</resources>

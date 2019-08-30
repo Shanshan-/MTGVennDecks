@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".ResultsActivity"
+    tools:showIn="@layout/activity_results">
+
+
+    <TextView
+        android:id="@+id/outputDeck1TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/deck1"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="@dimen/header_size"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/deck1" />
+
+    <Button
+        android:id="@+id/cb_copy1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/cb_copy"
+        android:textSize="@dimen/cb_button_size"
+        android:onClick="copyDeck"
+        app:layout_constraintStart_toEndOf="@+id/outputDeck1TV"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/cb_copy" />
+
+    <ScrollView
+        android:id="@+id/deck1Scroll"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/outputDeck1TV">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/deck1Results"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/more_data"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/outputDeck2TV"
+                tools:text="@string/more_data" />
+        </LinearLayout>
+    </ScrollView>
+
+    <!--<ScrollView
+        android:id="@+id/deck1Scroll"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/outputDeck1TV">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/deck1Results"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/more_data"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textSize="@dimen/header_size"
+                tools:text="@string/more_data" />
+        </LinearLayout>
+    </ScrollView>-->
+
+    <TextView
+        android:id="@+id/outputDeck2TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="175dp"
+        android:text="@string/deck2"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="@dimen/header_size"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/outputDeck1TV"
+        tools:text="@string/deck2" />
+
+    <Button
+        android:id="@+id/cb_copy2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/cb_copy"
+        android:textSize="@dimen/cb_button_size"
+        android:onClick="copyDeck"
+        app:layout_constraintStart_toEndOf="@+id/outputDeck2TV"
+        app:layout_constraintTop_toBottomOf="@+id/deck1Scroll"
+        tools:text="@string/cb_copy" />
+
+    <ScrollView
+        android:id="@+id/deck2Scroll"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/outputDeck2TV">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/deck2Results"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/more_data"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/outputDeck2TV"
+                tools:text="@string/more_data" />
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/commonCardsTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="175dp"
+        android:text="@string/common"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="@dimen/header_size"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/outputDeck2TV"
+        tools:text="@string/common" />
+
+    <Button
+        android:id="@+id/cb_copy_common"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/cb_copy"
+        android:textSize="@dimen/cb_button_size"
+        android:onClick="copyDeck"
+        app:layout_constraintStart_toEndOf="@+id/commonCardsTV"
+        app:layout_constraintTop_toBottomOf="@+id/deck2Scroll"
+        tools:text="@string/cb_copy" />
+
+    <ScrollView
+        android:id="@+id/commonScroll"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/commonCardsTV">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/commonResults"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/no_data"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/commonCardsTV"
+                tools:text="@string/no_data" />
+        </LinearLayout>
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MainActivity"
+    tools:showIn="@layout/activity_main">
+
+    <TextView
+        android:id="@+id/inputDeck1TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/deck1"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="@dimen/header_size"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/deck1" />
+
+    <Button
+        android:id="@+id/cb_paste1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/cb_paste"
+        android:textSize="@dimen/cb_button_size"
+        android:onClick="pasteDeck"
+        app:layout_constraintStart_toEndOf="@+id/inputDeck1TV"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/cb_paste" />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/deck1Input"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/input_tv_height"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputDeck1TV">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/deck1InputET"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/deck1_hint"
+            android:inputType="textMultiLine" />
+    </android.support.design.widget.TextInputLayout>
+
+    <TextView
+        android:id="@+id/inputDeck2TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/deck2"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="@dimen/header_size"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deck1Input"
+        tools:text="@string/deck2" />
+
+    <Button
+        android:id="@+id/cb_paste2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/cb_paste"
+        android:textSize="@dimen/cb_button_size"
+        android:onClick="pasteDeck"
+        app:layout_constraintStart_toEndOf="@+id/inputDeck2TV"
+        app:layout_constraintTop_toBottomOf="@+id/deck1Input"
+        tools:text="@string/cb_paste" />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/deck2Input"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/input_tv_height"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputDeck2TV">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/deck2InputET"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/deck2_hint"
+            android:inputType="textMultiLine" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="208dp" />
+
+</android.support.constraint.ConstraintLayout>
