@@ -17,6 +17,7 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 import java.util.HashSet;
+import java.util.Iterator;
 
 public class ResultsActivity extends AppCompatActivity {
 
@@ -32,30 +33,35 @@ public class ResultsActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         clipboard = (ClipboardManager)getSystemService(Context.CLIPBOARD_SERVICE);
+        //String[] test1 = {"hello\nworld\nthis\nis\nsparta", "this\nis\nnot\na\ntest"};
+        //splitDecks(test1);
 
         //Get data
         Intent intent = getIntent();
         String[] decks = intent.getStringArrayExtra(MainActivity.EXTRA_DECK_INFO);
         splitDecks(decks);
+        displayDecks();
+
         Snackbar.make(toolbar, decks[0], Snackbar.LENGTH_LONG).setAction("Part of TODO", null).show();
     }
 
     //Handle deck data
-    //TODO: implementation
     public void splitDecks(String[] input) {
         //String[] output = new String[3];
 
         //split input arrays into sets(?)
-        HashSet<String> deck1 = new HashSet<String>();
+        //TODO: collapse this into one loop block
+        HashSet<String> deck1 = new HashSet<>();
         String tmp = input[0];
         while(true) {
             //Check for stopping condition or if current line is valid
+            tmp = tmp.trim();
             int nextIndex = tmp.indexOf("\n");
             if (nextIndex == 0) {
                 tmp = tmp.substring(nextIndex+1);
                 continue;
             }
-            if (nextIndex == -1) {
+            if (nextIndex == -1 && tmp.equals("")) {
                 break;
             }
 
@@ -74,18 +80,77 @@ public class ResultsActivity extends AppCompatActivity {
             //Store current line
             if (Character.isDigit(tmp.charAt(nextIndex-1)))
                 deck1.add((tmp.substring(0, nextIndex).substring(0, tmp.lastIndexOf(" "))
-                                .substring(0, tmp.lastIndexOf(" "))).trim());
+                        .substring(0, tmp.lastIndexOf(" "))).trim());
             else
                 deck1.add(tmp.substring(0, nextIndex).trim());
 
             //Setup for next loop
             tmp = tmp.substring(nextIndex+1);
         }
+        HashSet<String> deck2 = new HashSet<>();
+        tmp = input[1];
+        while(true) {
+            //Check for stopping condition or if current line is valid
+            tmp = tmp.trim();
+            int nextIndex = tmp.indexOf("\n");
+            if (nextIndex == 0) {
+                tmp = tmp.substring(nextIndex+1);
+                continue;
+            }
+            if (nextIndex == -1 && tmp.equals("")) {
+                break;
+            }
 
-        //save to respective global variables
+            //Remove count number if present
+            if (Character.isDigit(tmp.charAt(0))) {
+                tmp = tmp.substring(tmp.indexOf(" ") + 1);
+            }
+
+            //Get start of next line
+            nextIndex = tmp.indexOf("\n");
+            if (nextIndex == -1) {
+                deck2.add(tmp);
+                break;
+            }
+
+            //Store current line
+            if (Character.isDigit(tmp.charAt(nextIndex-1)))
+                deck2.add((tmp.substring(0, nextIndex).substring(0, tmp.lastIndexOf(" "))
+                        .substring(0, tmp.lastIndexOf(" "))).trim());
+            else
+                deck2.add(tmp.substring(0, nextIndex).trim());
+
+            //Setup for next loop
+            tmp = tmp.substring(nextIndex+1);
+        }
+
+        //zero out respective global variables
         deck1List = "";
         deck2List = "";
         deckComList = "";
+
+        //filter into global variables
+        for(String card : deck1) {
+            if(deck2.contains(card)) {
+                deckComList = deckComList.concat(card + "\n");
+                deck2.remove(card);
+                continue;
+            }
+            deck1List = deck1List.concat(card + "\n");
+        }
+        for(String card : deck2) {
+            deck2List = deck2List.concat(card + "\n");
+        }
+        System.out.println(deck1List + "\n" + deckComList + "\n" + deck2List);
+    }
+
+    public void displayDecks() {
+        TextView deck1TV = findViewById(R.id.deck1Results);
+        TextView deck2TV = findViewById(R.id.deck2Results);
+        TextView deckComTV = findViewById(R.id.commonResults);
+        deck1TV.setText(deck1List);
+        deck2TV.setText(deck2List);
+        deckComTV.setText(deckComList);
     }
 
     // Default placeholder onClick method
