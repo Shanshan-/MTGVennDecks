@@ -49,79 +49,54 @@ public class ResultsActivity extends AppCompatActivity {
     public void splitDecks(String[] input) {
         //String[] output = new String[3];
 
-        //split input arrays into sets(?)
-        //TODO: collapse this into one loop block
+        //split input arrays into sets
         HashSet<String> deck1 = new HashSet<>();
-        String tmp = input[0];
-        while(true) {
-            //Check for stopping condition or if current line is valid
-            tmp = tmp.trim();
-            int nextIndex = tmp.indexOf("\n");
-            if (nextIndex == 0) {
-                tmp = tmp.substring(nextIndex+1);
-                continue;
-            }
-            if (nextIndex == -1 && tmp.equals("")) {
-                break;
-            }
-
-            //Remove count number if present
-            if (Character.isDigit(tmp.charAt(0))) {
-                tmp = tmp.substring(tmp.indexOf(" ") + 1);
-            }
-
-            //Get start of next line
-            nextIndex = tmp.indexOf("\n");
-            if (nextIndex == -1) {
-                deck1.add(tmp);
-                break;
-            }
-
-            //Store current line
-            if (Character.isDigit(tmp.charAt(nextIndex-1)))
-                deck1.add((tmp.substring(0, nextIndex).substring(0, tmp.lastIndexOf(" "))
-                        .substring(0, tmp.lastIndexOf(" "))).trim());
-            else
-                deck1.add(tmp.substring(0, nextIndex).trim());
-
-            //Setup for next loop
-            tmp = tmp.substring(nextIndex+1);
-        }
         HashSet<String> deck2 = new HashSet<>();
-        tmp = input[1];
-        while(true) {
-            //Check for stopping condition or if current line is valid
-            tmp = tmp.trim();
-            int nextIndex = tmp.indexOf("\n");
-            if (nextIndex == 0) {
-                tmp = tmp.substring(nextIndex+1);
-                continue;
-            }
-            if (nextIndex == -1 && tmp.equals("")) {
-                break;
-            }
+        int loopCount = 0;
+        while(loopCount < 2) {
+            String tmp = input[0];
+            if (loopCount == 1)
+                tmp = input[1];
+            while (true) {
+                //Check for stopping condition or if current line is valid
+                tmp = tmp.trim();
+                int nextIndex = tmp.indexOf("\n");
+                if (nextIndex == -1 && tmp.equals("")) {
+                    break;
+                }
 
-            //Remove count number if present
-            if (Character.isDigit(tmp.charAt(0))) {
-                tmp = tmp.substring(tmp.indexOf(" ") + 1);
+                //Get start of next line
+                nextIndex = tmp.indexOf("\n");
+                if (nextIndex == -1) {
+                    tmp = tmp.concat("\n");
+                    nextIndex = tmp.length() - 1;
+                }
+
+                //Remove set and collector number if present
+                String line = tmp.substring(0, nextIndex).trim();
+                if (Character.isDigit(line.charAt(nextIndex - 1))) { //uses tappedout format w/ CN
+                    line = line.substring(0, line.lastIndexOf(" ")).trim();
+                    line = line.substring(0, line.lastIndexOf(" ")).trim();
+                } else if (line.charAt(nextIndex - 1) == ')') { //uses tappedout format w/o CN
+                    line = line.substring(0, line.lastIndexOf(" ")).trim();
+                }
+
+                //Remove count number if present
+                if (Character.isDigit(line.charAt(0))) {
+                    line = line.substring(line.indexOf(" ") + 1);
+                }
+
+                //Add to respective deck
+                if (loopCount == 0) {
+                    deck1.add(line);
+                } else {
+                    deck2.add(line);
+                }
+
+                //Setup for next loop
+                tmp = tmp.substring(nextIndex + 1);
             }
-
-            //Get start of next line
-            nextIndex = tmp.indexOf("\n");
-            if (nextIndex == -1) {
-                deck2.add(tmp);
-                break;
-            }
-
-            //Store current line
-            if (Character.isDigit(tmp.charAt(nextIndex-1)))
-                deck2.add((tmp.substring(0, nextIndex).substring(0, tmp.lastIndexOf(" "))
-                        .substring(0, tmp.lastIndexOf(" "))).trim());
-            else
-                deck2.add(tmp.substring(0, nextIndex).trim());
-
-            //Setup for next loop
-            tmp = tmp.substring(nextIndex+1);
+            loopCount++;
         }
 
         //zero out respective global variables
@@ -141,6 +116,9 @@ public class ResultsActivity extends AppCompatActivity {
         for(String card : deck2) {
             deck2List = deck2List.concat(card + "\n");
         }
+        deck1List = deck1List.trim();
+        deck2List = deck2List.trim();
+        deckComList = deckComList.trim();
         System.out.println(deck1List + "\n" + deckComList + "\n" + deck2List);
     }
 
