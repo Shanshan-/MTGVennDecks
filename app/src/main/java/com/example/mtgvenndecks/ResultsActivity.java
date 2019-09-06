@@ -16,6 +16,8 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
 
@@ -25,6 +27,9 @@ public class ResultsActivity extends AppCompatActivity {
     private String deck1List = "";
     private String deck2List = "";
     private String deckComList = "";
+    private ArrayList<String> BASICS =
+            new ArrayList<>(Arrays.asList("Plains", "Island", "Swamp", "Mountain", "Forest", "Wastes"));
+    private int[] basicCount = {0, 0, 0, 0, 0, 0};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +91,18 @@ public class ResultsActivity extends AppCompatActivity {
                     line = line.substring(line.indexOf(" ") + 1);
                 }
 
+                //Handle if basic
+                int basicType = BASICS.indexOf(line);
+                if (basicType != -1) {
+                    int count = Integer.parseInt(tmp.substring(0, tmp.indexOf(" ")));
+                    if (loopCount == 0)
+                        basicCount[basicType] -= count;
+                    else
+                        basicCount[basicType] += count;
+                    tmp = tmp.substring(nextIndex + 1);
+                    continue;
+                }
+
                 //Add to respective deck
                 if (loopCount == 0) {
                     deck1.add(line);
@@ -116,6 +133,15 @@ public class ResultsActivity extends AppCompatActivity {
         for(String card : deck2) {
             deck2List = deck2List.concat(card + "\n");
         }
+
+        //add basics to common list
+        for(int x = 0; x < basicCount.length; x++) {
+            if (basicCount[x] == 0)
+                continue;
+            deckComList = deckComList.concat(basicCount[x] + " " + BASICS.get(x) + "\n");
+        }
+
+        //clean up deck lists
         deck1List = deck1List.trim();
         deck2List = deck2List.trim();
         deckComList = deckComList.trim();
